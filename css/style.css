@@ -126,7 +126,7 @@ p { margin: 0; }
    NAV
 ================================================================= */
 .nav {
-  position: fixed;
+  position: absolute;
   inset: 0 0 auto 0;
   z-index: 100;
   display: flex;
