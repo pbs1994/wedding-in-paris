@@ -439,22 +439,27 @@ p { margin: 0; }
 .planner .quote { color: var(--ink); }
 
 .planner__frame {
-  position: relative;
   max-width: 1180px;
   margin: clamp(3.5rem, 8vw, 6rem) auto 0;
   text-align: left;
+  display: grid;
+  grid-template-columns: 1fr;
 }
-.planner__frame img {
+.planner__media {
+  overflow: hidden;
+}
+.planner__media img {
   width: 100%;
-  aspect-ratio: 16/10;
+  height: 100%;
+  aspect-ratio: 4/5;
   object-fit: cover;
 }
 .planner__card {
-  position: relative;
   background: var(--paper);
-  padding: clamp(1.8rem, 4vw, 3.2rem);
-  max-width: 480px;
-  margin-top: -1px;
+  padding: clamp(2rem, 4vw, 3.2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .planner__card h2 {
   font-size: clamp(1.5rem, 2.6vw, 2rem);
@@ -469,16 +474,14 @@ p { margin: 0; }
   margin-bottom: 1.4em;
 }
 .planner__card p:not(.planner__role) { color: var(--ink-70); margin-bottom: 1.1em; }
-.planner__card .btn { margin-top: .6em; }
+.planner__card .btn { margin-top: .6em; align-self: flex-start; }
 
 @media (min-width: 900px) {
-  .planner__frame { display: block; }
-  .planner__card {
-    position: absolute;
-    left: clamp(-1rem, -4vw, -2.5rem);
-    bottom: clamp(-2rem, -5vw, -3rem);
-    margin-top: 0;
+  .planner__frame {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: stretch;
   }
+  .planner__media img { aspect-ratio: auto; }
 }
 
 /* =================================================================
@@ -535,6 +538,175 @@ p { margin: 0; }
   transition: color .3s var(--ease);
 }
 .testimonials__google:hover { color: var(--champagne-dark); }
+
+/* ---------- Google Reviews (live, via Places API — see js/main.js) ---------- */
+.google-reviews {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  text-align: left;
+  display: grid;
+  gap: 2rem;
+}
+.google-reviews[hidden] { display: none; }
+
+.google-reviews__summary { text-align: center; }
+.google-reviews__badge {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+}
+.google-reviews__stars {
+  display: inline-flex;
+  gap: 3px;
+  color: var(--champagne-dark);
+  margin-top: .5em;
+}
+.google-reviews__stars .icon { width: 18px; height: 18px; fill: currentColor; stroke: none; }
+.google-reviews__count {
+  margin-top: .5em;
+  font-size: .82rem;
+  color: var(--stone);
+}
+.google-reviews__count strong { color: var(--ink); }
+.google-reviews__wordmark {
+  margin-top: .6em;
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.google-reviews__wordmark .c1 { color: #4285F4; }
+.google-reviews__wordmark .c2 { color: #EA4335; }
+.google-reviews__wordmark .c3 { color: #FBBC05; }
+.google-reviews__wordmark .c4 { color: #34A853; }
+
+.google-reviews__carousel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+.google-reviews__prev,
+.google-reviews__next {
+  display: none;
+  font-size: 1rem;
+  color: var(--champagne-dark);
+  padding: .6em 1em;
+  border: 1px solid var(--hairline);
+  transition: background-color .3s var(--ease);
+}
+.google-reviews__prev:hover,
+.google-reviews__next:hover { background: var(--ivory); }
+
+.google-reviews__track {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding: .3rem 0;
+  min-width: 0;
+}
+.google-reviews__track::-webkit-scrollbar { display: none; }
+
+@media (max-width: 779px) {
+  .review-card:first-child { margin-left: var(--gutter); }
+  .review-card:last-child { margin-right: var(--gutter); }
+}
+
+.review-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(78vw, 300px);
+  scroll-snap-align: start;
+  padding: 1.6rem;
+  border: 1px solid var(--hairline);
+  background: var(--ivory);
+  display: flex;
+  flex-direction: column;
+}
+.review-card__google-icon {
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  width: 18px; height: 18px;
+}
+.review-card__head {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: 1rem;
+  padding-right: 1.5rem;
+}
+.review-card__avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: #fff;
+}
+.review-card__name { font-weight: 500; font-size: .88rem; }
+.review-card__time { margin-top: .15rem; font-size: .74rem; color: var(--stone); }
+.review-card__stars {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: .7rem;
+}
+.review-card__stars-row { display: flex; gap: 1px; color: var(--champagne-dark); }
+.review-card__stars .icon { width: 13px; height: 13px; fill: currentColor; stroke: none; }
+.review-card__verified {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #4285F4;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.review-card__verified .icon { width: 9px; height: 9px; fill: none; stroke: currentColor; stroke-width: 3; }
+.review-card__text {
+  font-size: .88rem;
+  line-height: 1.6;
+  color: var(--ink-70);
+  max-width: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.review-card.is-expanded .review-card__text { -webkit-line-clamp: unset; overflow: visible; }
+.review-card__more {
+  align-self: flex-start;
+  margin-top: .8rem;
+  font-size: .78rem;
+  letter-spacing: .06em;
+  font-weight: 500;
+  color: var(--champagne-dark);
+}
+.review-card__more:hover { color: var(--ink); }
+
+@media (min-width: 780px) {
+  .google-reviews {
+    grid-template-columns: 220px 1fr;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .google-reviews__summary { text-align: left; }
+  .google-reviews__carousel {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+  }
+  .google-reviews__prev,
+  .google-reviews__next { display: inline-flex; }
+  .google-reviews__stars { margin-left: -2px; }
+}
 
 /* =================================================================
    CTA

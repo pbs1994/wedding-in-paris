@@ -27,7 +27,7 @@ Then open http://localhost:8080.
 
 ## Notes / placeholders to revisit
 
-- **Testimonials** — the "Kind Words" section ships with 3 sample quotes as placeholders and a link to Google Search reviews. Swap in a real Google Reviews / Places widget when API access is available.
-- **Contact links** — "Start Planning" and "Discover Agence Chance" currently point to WhatsApp (`wa.me/33757532491`), built from the phone number in the brief. Point them to a booking form or main site once that URL exists.
+- **Testimonials** — the "Kind Words" section pulls live reviews from Agence Chance's real Google Business Profile via the Places API (New), same widget/placeId as the wedding-in-normandy site (`js/main.js`, `GOOGLE_REVIEWS_CONFIG`). If the widget ever stops showing reviews, add this site's domain to the API key's allowed referrers in Google Cloud Console — until then it falls back to the static "Read Our Reviews on Google" link, nothing breaks.
+- **Contact links** — "Start Planning" (hero + CTA) points to WhatsApp (`wa.me/33757532491`), built from the phone number in the brief. "Discover Agence Chance" and the footer's "Weddings in France" tagline link to the main site, https://agencechance.com/en/.
 - **Instagram** footer link assumes `instagram.com/agence.chance` from the handle given in the brief.
 - Source photography and video lived in `~/Downloads` (brief docx, photos zip, video file) and were processed (rotated, resized, compressed) into `assets/`.

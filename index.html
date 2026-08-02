@@ -16,11 +16,22 @@
 </head>
 <body>
 
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7z" /></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M4 12l6 6L20 6" /></symbol>
+  <symbol id="icon-google-g" viewBox="0 0 48 48">
+    <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+    <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+    <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88z"/>
+    <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+  </symbol>
+</svg>
+
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ============ NAV ============ -->
 <header class="nav" data-nav>
-  <a href="#top" class="nav__mark">Agence <em>Chance</em></a>
+  <a href="#top" class="nav__mark">Wedding <em>in Paris</em></a>
 
   <button class="nav__burger" data-nav-toggle aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
     <span></span><span></span>
@@ -40,7 +51,7 @@
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
     <div class="hero__media">
-      <img src="assets/img/hero.jpg" alt="Bride and groom embracing at golden hour with the Eiffel Tower behind them" loading="eager">
+      <img src="assets/img/hero.jpg" alt="Bride and groom arriving at the Plaza Athénée in Paris" loading="eager">
     </div>
     <div class="hero__content">
       <h1 class="hero__title">Destination Weddings in Paris</h1>
@@ -164,13 +175,15 @@
     </blockquote>
 
     <div class="planner__frame reveal">
-      <img src="assets/img/planner.jpg" alt="Tatiana Balduc walking with a couple through Paris" loading="lazy">
+      <div class="planner__media">
+        <img src="assets/img/planner.jpg" alt="Tatiana Balduc walking with a couple through Paris" loading="lazy">
+      </div>
       <div class="planner__card">
         <h2>Tatiana Balduc <span>(Tatiana Chance)</span></h2>
         <p class="planner__role">Founder of Agence Chance<br>Paris-based Wedding Planner</p>
         <p>For over 13 years, Tatiana has been creating elegant celebrations for international couples across France.</p>
         <p>Working in English, French and Russian, she personally guides every couple from the first conversation to the wedding day, ensuring a seamless experience and timeless memories.</p>
-        <a href="https://wa.me/33757532491" class="btn btn--dark" target="_blank" rel="noopener">Discover Agence Chance</a>
+        <a href="https://agencechance.com/en/" class="btn btn--dark" target="_blank" rel="noopener">Discover Agence Chance</a>
       </div>
     </div>
   </section>
@@ -180,28 +193,32 @@
     <h2 class="reveal">Kind Words</h2>
     <p class="testimonials__lede reveal">The greatest compliment we receive is the trust our couples place in us.</p>
 
-    <ul class="testimonials__list reveal-group">
-      <li class="reveal">
-        <p>&ldquo;Every detail felt like it had been lifted from a film. Tatiana understood exactly who we were before we did.&rdquo;</p>
-        <span>M. &amp; J. — New York</span>
-      </li>
-      <li class="reveal">
-        <p>&ldquo;Our guests still talk about that evening. Effortless, elegant, unmistakably Parisian.&rdquo;</p>
-        <span>A. &amp; L. — London</span>
-      </li>
-      <li class="reveal">
-        <p>&ldquo;We trusted Agence Chance with everything, and they gave us back a memory for life.&rdquo;</p>
-        <span>S. &amp; D. — Milan</span>
-      </li>
-    </ul>
+    <!-- Populated live from the Google Places API — see GOOGLE_REVIEWS_CONFIG
+         in js/main.js. Hidden until real reviews load successfully; the
+         static fallback link below always stays available underneath. -->
+    <div class="google-reviews" id="google-reviews" hidden>
+      <div class="google-reviews__summary">
+        <p class="google-reviews__badge"></p>
+        <span class="google-reviews__stars" aria-hidden="true"></span>
+        <p class="google-reviews__count"></p>
+        <p class="google-reviews__wordmark" aria-hidden="true">
+          <span class="c1">G</span><span class="c2">o</span><span class="c3">o</span><span class="c1">g</span><span class="c4">l</span><span class="c2">e</span>
+        </p>
+      </div>
+      <div class="google-reviews__carousel">
+        <button class="google-reviews__prev" type="button" aria-label="Previous reviews">&larr;</button>
+        <div class="google-reviews__track"></div>
+        <button class="google-reviews__next" type="button" aria-label="Next reviews">&rarr;</button>
+      </div>
+    </div>
 
-    <a class="testimonials__google" href="https://www.google.com/search?q=Agence+Chance+Paris+wedding+planner+reviews" target="_blank" rel="noopener">Read our Google Reviews →</a>
+    <a class="testimonials__google reveal" id="google-reviews-fallback" href="https://maps.google.com/?cid=12002113166185420688" target="_blank" rel="noopener">Read our Google Reviews →</a>
   </section>
 
   <!-- ============ CTA ============ -->
   <section class="cta" id="start-planning">
     <div class="cta__media">
-      <img src="assets/img/cta.jpg" alt="Bride and groom arriving at a Paris palace hotel by night" loading="lazy">
+      <img src="assets/img/cta.jpg" alt="Bride and groom embracing at dusk with the Eiffel Tower behind them" loading="lazy">
     </div>
     <div class="cta__content reveal">
       <h2>Your story deserves Paris.</h2>
@@ -322,8 +339,8 @@
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <a href="#top" class="footer__mark">Agence <em>Chance</em></a>
-  <p class="footer__tag"><a href="https://wa.me/33757532491" target="_blank" rel="noopener">Weddings in France</a></p>
+  <a href="#top" class="footer__mark">Wedding <em>in Paris</em></a>
+  <p class="footer__tag"><a href="https://agencechance.com/en/" target="_blank" rel="noopener">Weddings in France</a></p>
   <p>Paris &bull; Normandy &bull; Throughout France</p>
   <p>Fran&ccedil;ais &middot; English &middot; Русский</p>
   <p>231 Rue Saint-Honor&eacute;, 75001 Paris</p>
