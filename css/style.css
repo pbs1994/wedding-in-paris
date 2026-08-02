@@ -894,6 +894,7 @@ p { margin: 0; }
   .testimonials__list { grid-template-columns: 1fr; }
 
   .planner__card { position: static; max-width: none; }
+  .planner__card h2 span { display: block; white-space: nowrap; }
 }
 
 @media (max-width: 560px) {
