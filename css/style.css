@@ -229,7 +229,7 @@ p { margin: 0; }
   position: absolute;
   left: var(--gutter);
   right: var(--gutter);
-  bottom: 6%;
+  bottom: 3%;
   z-index: 2;
   color: var(--paper);
   text-align: center;
@@ -241,7 +241,6 @@ p { margin: 0; }
 }
 .hero__title {
   font-size: var(--fs-hero);
-  max-width: 20ch;
   margin: 0 auto;
   line-height: 1.1;
 }
