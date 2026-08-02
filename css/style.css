@@ -126,7 +126,7 @@ p { margin: 0; }
    NAV
 ================================================================= */
 .nav {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto 0;
   z-index: 100;
   display: flex;
@@ -871,7 +871,9 @@ p { margin: 0; }
    RESPONSIVE
 ================================================================= */
 @media (max-width: 900px) {
+  .nav { position: absolute; }
   .nav__burger { display: block; z-index: 101; }
+  .nav__burger[aria-expanded="true"] { color: var(--paper); }
   .nav__menu {
     position: fixed;
     inset: 0;
