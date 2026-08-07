@@ -32,7 +32,8 @@
 <!-- ============ NAV ============ -->
 <header class="nav" data-nav>
   <button class="nav__burger" data-nav-toggle aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
-    <span></span><span></span>
+    <span class="nav__burger-icon"><span></span><span></span></span>
+    <span class="nav__burger-label">Close</span>
   </button>
 
   <a href="#top" class="nav__logo">
@@ -44,6 +45,8 @@
   </a>
 
   <a href="#start-planning" class="nav__cta">Start Planning</a>
+
+  <div class="nav__scrim" data-nav-scrim></div>
 
   <nav class="nav__menu" id="nav-menu" data-nav-menu>
     <a href="#why-paris" data-nav-link>Why Paris</a>

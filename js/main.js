@@ -13,18 +13,27 @@ const GOOGLE_REVIEWS_CONFIG = {
 (() => {
   'use strict';
 
-  /* ---------- Nav: burger toggle ---------- */
+  /* ---------- Nav: burger toggle (Louis Vuitton-style side panel) ---------- */
   const burger = document.querySelector('[data-nav-toggle]');
   const menu = document.querySelector('[data-nav-menu]');
-  burger.addEventListener('click', () => {
-    const open = menu.classList.toggle('is-open');
+  const scrim = document.querySelector('[data-nav-scrim]');
+
+  const setMenuOpen = (open) => {
+    menu.classList.toggle('is-open', open);
+    scrim.classList.toggle('is-open', open);
     burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('nav-open', open);
+  };
+
+  burger.addEventListener('click', () => {
+    setMenuOpen(!menu.classList.contains('is-open'));
+  });
+  scrim.addEventListener('click', () => setMenuOpen(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenuOpen(false);
   });
   menu.querySelectorAll('[data-nav-link]').forEach((link) => {
-    link.addEventListener('click', () => {
-      menu.classList.remove('is-open');
-      burger.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', () => setMenuOpen(false));
   });
 
   /* ---------- Scroll reveal ---------- */
