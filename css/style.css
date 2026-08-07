@@ -355,7 +355,8 @@ p { margin: 0; }
    EXPERIENCE
 ================================================================= */
 .experience {
-  background: var(--ink);
+  background: var(--paper);
+  border-top: 1px solid var(--hairline);
   padding-bottom: var(--section-space);
 }
 .experience__video {
@@ -370,7 +371,7 @@ p { margin: 0; }
 }
 
 .experience__title {
-  color: var(--paper);
+  color: var(--ink);
   text-align: center;
   font-size: var(--fs-h2);
   font-style: italic;
@@ -393,7 +394,7 @@ p { margin: 0; }
 .carousel__track:active { cursor: grabbing; }
 .carousel__track::-webkit-scrollbar { height: 4px; }
 .carousel__track::-webkit-scrollbar-thumb { background: var(--champagne); }
-.carousel__track::-webkit-scrollbar-track { background: rgba(255,255,255,.1); }
+.carousel__track::-webkit-scrollbar-track { background: rgba(20,18,15,.08); }
 
 .carousel__card {
   position: relative;
