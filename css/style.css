@@ -254,6 +254,18 @@ p { margin: 0; }
 }
 .nav__menu a:hover::after { right: 0; }
 
+.nav__menu-cta {
+  display: none;
+  margin-top: .5rem;
+  border: 1px solid currentColor;
+  padding: .8em 1.4em;
+  font-family: var(--font-body);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.nav__menu-cta::after { display: none; }
+
 /* =================================================================
    HERO
 ================================================================= */
@@ -944,12 +956,15 @@ p { margin: 0; }
   .planner__card h2 span { display: block; white-space: nowrap; }
 }
 
-@media (max-width: 560px) {
-  .hero__content { bottom: 9%; }
-  .carousel__card { flex-basis: 74vw; }
-
+@media (max-width: 680px) {
   .nav { padding: .85em var(--gutter); }
   .nav__logo-icon { height: 1.5rem; }
   .nav__logo-tag { display: none; }
-  .nav__cta { padding: .65em 1em; font-size: .64rem; }
+  .nav__cta { display: none; }
+  .nav__menu-cta { display: inline-block; }
+}
+
+@media (max-width: 560px) {
+  .hero__content { bottom: 9%; }
+  .carousel__card { flex-basis: 74vw; }
 }
