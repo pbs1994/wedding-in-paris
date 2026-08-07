@@ -13,15 +13,7 @@ const GOOGLE_REVIEWS_CONFIG = {
 (() => {
   'use strict';
 
-  /* ---------- Nav: solid background on scroll ---------- */
-  const nav = document.querySelector('[data-nav]');
-  const onScroll = () => {
-    nav.classList.toggle('is-scrolled', window.scrollY > 60);
-  };
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  /* ---------- Nav: mobile burger ---------- */
+  /* ---------- Nav: burger toggle ---------- */
   const burger = document.querySelector('[data-nav-toggle]');
   const menu = document.querySelector('[data-nav-menu]');
   burger.addEventListener('click', () => {
