@@ -333,6 +333,11 @@ p { margin: 0; }
   max-width: 44ch;
   margin: clamp(4rem, 8vw, 6rem) auto 0;
 }
+.why-paris__copy--intro {
+  margin-top: 0;
+  margin-bottom: clamp(4rem, 8vw, 6rem);
+  text-align: left;
+}
 .why-paris__copy p { margin-bottom: 1.2em; color: var(--ink-70); }
 .why-paris__copy .lede {
   font-family: var(--font-display);
