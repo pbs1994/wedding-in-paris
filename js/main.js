@@ -116,6 +116,63 @@ const GOOGLE_REVIEWS_CONFIG = {
     track.addEventListener('dragstart', (e) => e.preventDefault());
   }
 
+  /* ---------- Icon-grid lightbox: click a photo to view it full-screen ---------- */
+  const lightbox = document.querySelector('[data-lightbox]');
+  const lightboxGroup = document.querySelector('[data-lightbox-group]');
+  if (lightbox && lightboxGroup) {
+    const triggers = Array.from(lightboxGroup.querySelectorAll('[data-lightbox-trigger]'));
+    const slides = triggers.map((trigger) => {
+      const img = trigger.querySelector('img');
+      return { src: img.currentSrc || img.src, alt: img.alt, caption: trigger.querySelector('span').textContent };
+    });
+
+    const imgEl = lightbox.querySelector('[data-lightbox-img]');
+    const captionEl = lightbox.querySelector('[data-lightbox-caption]');
+    let activeIndex = 0;
+    let lastFocused = null;
+
+    const show = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+      const slide = slides[activeIndex];
+      imgEl.src = slide.src;
+      imgEl.alt = slide.alt;
+      captionEl.textContent = slide.caption;
+    };
+
+    const openLightbox = (index) => {
+      lastFocused = document.activeElement;
+      show(index);
+      lightbox.hidden = false;
+      document.body.classList.add('lightbox-open');
+      requestAnimationFrame(() => lightbox.classList.add('is-open'));
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      document.body.classList.remove('lightbox-open');
+      window.setTimeout(() => { lightbox.hidden = true; }, 400);
+      if (lastFocused) lastFocused.focus();
+    };
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener('click', () => openLightbox(index));
+    });
+
+    lightbox.querySelectorAll('[data-lightbox-close]').forEach((el) => {
+      el.addEventListener('click', closeLightbox);
+    });
+    lightbox.querySelector('[data-lightbox-prev]').addEventListener('click', () => show(activeIndex - 1));
+    lightbox.querySelector('[data-lightbox-next]').addEventListener('click', () => show(activeIndex + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') show(activeIndex - 1);
+      if (e.key === 'ArrowRight') show(activeIndex + 1);
+    });
+  }
+
   /* ---------- Hero video-like image fallback: ensure autoplay on mobile ---------- */
   const video = document.querySelector('.experience__video video');
   if (video) {

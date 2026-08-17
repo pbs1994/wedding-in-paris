@@ -87,41 +87,68 @@
       <cite>&mdash; Audrey Hepburn</cite>
     </blockquote>
 
-    <ul class="icon-grid reveal-group">
+    <ul class="icon-grid reveal-group" data-lightbox-group>
       <li class="icon-grid__item reveal">
-        <img src="assets/img/icon-iconic-views.jpg" alt="Iconic Parisian rooftop view" loading="lazy">
-        <span>Iconic Views</span>
+        <button class="icon-grid__link" type="button" data-lightbox-trigger>
+          <img src="assets/img/icon-iconic-views.jpg" alt="Iconic Parisian rooftop view" loading="lazy">
+          <span>Iconic Views</span>
+        </button>
       </li>
       <li class="icon-grid__item reveal">
-        <img src="assets/img/icon-french-elegance.jpg" alt="Groom in black tie by a gilded Parisian fireplace" loading="lazy">
-        <span>French Elegance</span>
+        <button class="icon-grid__link" type="button" data-lightbox-trigger>
+          <img src="assets/img/icon-french-elegance.jpg" alt="Groom in black tie by a gilded Parisian fireplace" loading="lazy">
+          <span>French Elegance</span>
+        </button>
       </li>
       <li class="icon-grid__item reveal">
-        <img src="assets/img/icon-luxury-lifestyle.jpg" alt="Luxury Parisian lifestyle" loading="lazy">
-        <span>Luxury Lifestyle</span>
+        <button class="icon-grid__link" type="button" data-lightbox-trigger>
+          <img src="assets/img/icon-luxury-lifestyle.jpg" alt="Luxury Parisian lifestyle" loading="lazy">
+          <span>Luxury Lifestyle</span>
+        </button>
       </li>
       <li class="icon-grid__item reveal">
-        <img src="assets/img/icon-unforgettable.jpg" alt="Bride standing in a vintage convertible on a Paris bridge" loading="lazy">
-        <span>Unforgettable lifetime experience</span>
+        <button class="icon-grid__link" type="button" data-lightbox-trigger>
+          <img src="assets/img/icon-unforgettable.jpg" alt="Bride standing in a vintage convertible on a Paris bridge" loading="lazy">
+          <span>Unforgettable lifetime experience</span>
+        </button>
       </li>
       <li class="icon-grid__item reveal">
-        <img src="assets/img/icon-art-de-vivre.jpg" alt="Parisian art de vivre" loading="lazy">
-        <span>Art de Vivre</span>
+        <button class="icon-grid__link" type="button" data-lightbox-trigger>
+          <img src="assets/img/icon-art-de-vivre.jpg" alt="Parisian art de vivre" loading="lazy">
+          <span>Art de Vivre</span>
+        </button>
       </li>
       <li class="icon-grid__item reveal">
-        <img src="assets/img/icon-romance-love.jpg" alt="Bride and groom in a close, tender portrait" loading="lazy">
-        <span>Romance &amp; Love</span>
+        <button class="icon-grid__link" type="button" data-lightbox-trigger>
+          <img src="assets/img/icon-romance-love.jpg" alt="Bride and groom in a close, tender portrait" loading="lazy">
+          <span>Romance &amp; Love</span>
+        </button>
       </li>
       <li class="icon-grid__item reveal">
-        <img src="assets/img/icon-gastronomy.jpg" alt="Legendary Parisian gastronomy" loading="lazy">
-        <span>Legendary Gastronomy</span>
+        <button class="icon-grid__link" type="button" data-lightbox-trigger>
+          <img src="assets/img/icon-gastronomy.jpg" alt="Legendary Parisian gastronomy" loading="lazy">
+          <span>Legendary Gastronomy</span>
+        </button>
       </li>
       <li class="icon-grid__item reveal">
-        <img src="assets/img/icon-city-of-lights.jpg" alt="Couple dancing in front of the illuminated Eiffel Tower at night" loading="lazy">
-        <span>City of Lights</span>
+        <button class="icon-grid__link" type="button" data-lightbox-trigger>
+          <img src="assets/img/icon-city-of-lights.jpg" alt="Couple dancing in front of the illuminated Eiffel Tower at night" loading="lazy">
+          <span>City of Lights</span>
+        </button>
       </li>
     </ul>
   </section>
+
+  <div class="lightbox" data-lightbox hidden>
+    <div class="lightbox__scrim" data-lightbox-close></div>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Previous photo">&lsaquo;</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Next photo">&rsaquo;</button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" data-lightbox-img src="" alt="">
+      <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
+    </figure>
+  </div>
 
   <!-- ============ THE EXPERIENCE ============ -->
   <section class="experience" id="experience">
