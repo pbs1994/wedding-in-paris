@@ -89,15 +89,18 @@ const GOOGLE_REVIEWS_CONFIG = {
     let isDown = false;
     let startX = 0;
     let scrollLeft = 0;
+    let dragMoved = false;
 
     const start = (x) => {
       isDown = true;
+      dragMoved = false;
       startX = x;
       scrollLeft = track.scrollLeft;
       track.style.scrollSnapType = 'none';
     };
     const move = (x) => {
       if (!isDown) return;
+      if (Math.abs(x - startX) > 6) dragMoved = true;
       track.scrollLeft = scrollLeft - (x - startX);
     };
     const end = () => {
@@ -114,32 +117,44 @@ const GOOGLE_REVIEWS_CONFIG = {
     track.addEventListener('touchend', end);
 
     track.addEventListener('dragstart', (e) => e.preventDefault());
+
+    // Swallow the click that follows a drag, so releasing a swipe over a
+    // photo doesn't also pop the lightbox open.
+    track.addEventListener('click', (e) => {
+      if (dragMoved) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
   }
 
-  /* ---------- Icon-grid lightbox: click a photo to view it full-screen ---------- */
+  /* ---------- Lightbox: click a photo (icon grid, experience carousel) to
+     view it full-screen, with prev/next through the rest of its group ---------- */
   const lightbox = document.querySelector('[data-lightbox]');
-  const lightboxGroup = document.querySelector('[data-lightbox-group]');
-  if (lightbox && lightboxGroup) {
-    const triggers = Array.from(lightboxGroup.querySelectorAll('[data-lightbox-trigger]'));
-    const slides = triggers.map((trigger) => {
-      const img = trigger.querySelector('img');
-      return { src: img.currentSrc || img.src, alt: img.alt, caption: trigger.querySelector('span').textContent };
-    });
-
+  const lightboxGroups = document.querySelectorAll('[data-lightbox-group]');
+  if (lightbox && lightboxGroups.length) {
     const imgEl = lightbox.querySelector('[data-lightbox-img]');
     const captionEl = lightbox.querySelector('[data-lightbox-caption]');
+    let activeSlides = [];
     let activeIndex = 0;
     let lastFocused = null;
 
+    const captionFor = (trigger) => {
+      const time = trigger.querySelector('.carousel__time');
+      const heading = trigger.querySelector('h3');
+      if (time && heading) return `${time.textContent.trim()} — ${heading.textContent.trim()}`;
+      const span = trigger.querySelector('span');
+      if (span) return span.textContent.trim();
+      return trigger.querySelector('img').alt;
+    };
+
     const show = (index) => {
-      activeIndex = (index + slides.length) % slides.length;
-      const slide = slides[activeIndex];
+      activeIndex = (index + activeSlides.length) % activeSlides.length;
+      const slide = activeSlides[activeIndex];
       imgEl.src = slide.src;
       imgEl.alt = slide.alt;
       captionEl.textContent = slide.caption;
     };
 
-    const openLightbox = (index) => {
+    const openLightbox = (slides, index) => {
+      activeSlides = slides;
       lastFocused = document.activeElement;
       show(index);
       lightbox.hidden = false;
@@ -155,8 +170,15 @@ const GOOGLE_REVIEWS_CONFIG = {
       if (lastFocused) lastFocused.focus();
     };
 
-    triggers.forEach((trigger, index) => {
-      trigger.addEventListener('click', () => openLightbox(index));
+    lightboxGroups.forEach((group) => {
+      const triggers = Array.from(group.querySelectorAll('[data-lightbox-trigger]'));
+      const slides = triggers.map((trigger) => {
+        const img = trigger.querySelector('img');
+        return { src: img.currentSrc || img.src, alt: img.alt, caption: captionFor(trigger) };
+      });
+      triggers.forEach((trigger, index) => {
+        trigger.addEventListener('click', () => openLightbox(slides, index));
+      });
     });
 
     lightbox.querySelectorAll('[data-lightbox-close]').forEach((el) => {
