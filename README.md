@@ -34,4 +34,4 @@ Then open http://localhost:8080.
 - **Contact links** — "Start Planning" (hero + CTA) points to WhatsApp (`wa.me/33757532491`), built from the phone number in the brief. "Discover Agence Chance" and the footer's "Weddings in France" tagline link to the main site, https://agencechance.com/en/.
 - **Instagram** footer link assumes `instagram.com/agence.chance` from the handle given in the brief.
 - Source photography and video lived in `~/Downloads` (brief docx, photos zip, video file) and were processed (rotated, resized, compressed) into `assets/`.
-- **SEO** — canonical URL, Open Graph/Twitter image and JSON-LD `url`/`sameAs` fields are hardcoded to `https://wedding-in-paris.vercel.app/`. If a custom domain is set up, update those in `index.html`'s `<head>`, plus `robots.txt` and `sitemap.xml`.
+- **SEO** — canonical URL, Open Graph/Twitter image and JSON-LD `url`/`sameAs` fields are hardcoded to `https://wedding-in-paris.com/`. If the domain ever changes, update those in `index.html`'s `<head>`, plus `robots.txt` and `sitemap.xml`.
