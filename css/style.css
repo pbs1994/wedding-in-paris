@@ -619,7 +619,7 @@ p { margin: 0; }
   height: 100%;
   aspect-ratio: 4/5;
   object-fit: cover;
-  object-position: 44% center;
+  object-position: 57% center;
 }
 .planner__card {
   background: var(--paper);
